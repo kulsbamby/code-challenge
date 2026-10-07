@@ -1,0 +1,15 @@
+services:
+  api:
+    build: .
+    ports:
+      - "${PORT:-3000}:${PORT:-3000}"
+    environment:
+      PORT: ${PORT:-3000}
+      DB_FILE: /app/data/app.db
+      SEED_ON_START: ${SEED_ON_START:-true}
+    volumes:
+      - db-data:/app/data
+    restart: unless-stopped
+
+volumes:
+  db-data:
